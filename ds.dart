@@ -9,19 +9,26 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   /*
-  function with return type
+  Data Structures
   */
-  int add (int a, int b){
-    int sum = a+b;
-    return sum;
+  List numbers = [1, 2, 3, 4, 5, 6];
+  List<String> names = ["Hello", "Hi", "Bye"];
+  void printNumbers() {
+    for (int i = 0; i < numbers.length; i++) {
+      print(numbers[i]);
   }
+  }
+  void printNames(){
+    for (int i=0;i<names.length){
+      print(names[i]);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
-   print (add(3,5));
-   int mySum = add(8-4);
-   print(mySum);
-    }
+    printNumbers();
+    printNames();
 
     return const MaterialApp(
         debugShowCheckedModeBanner: false, home: Scaffold());
