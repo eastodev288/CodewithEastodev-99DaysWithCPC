@@ -9,21 +9,24 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   /*
-  function with return type
+  Data Structures
   */
-  int add (int a, int b){
-    int sum = a+b;
-    return sum;
-  }
-
+// set : underordered collection of unique elements
+Set<String> uniqueNames ={ "hello ", "hii" , " bye "};
+//Map: stored as key- value pairs 
+Map user ={
+  'name': "hello",
+  'age': 23,
+  'hight': 6.4, 
+}
   @override
   Widget build(BuildContext context) {
-   print (add(3,5));
-   int mySum = add(8-4);
-   print(mySum);
+
+print(user['age']);
     }
 
     return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: Scaffold());
+        debugShowCheckedModeBanner: false, 
+        home: Scaffold());
   }
 }
