@@ -15,6 +15,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: const Color.fromARGB(255, 107, 62, 189),
+        appBar: AppBar(
+          title: Text("My App Bar"),
+          backgroundColor: Colors.blueGrey,
+          elevation: 0,
+          leading: Icon(Icons.menu),
+          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
+        ),
         body: Center(
           child: Container(
             height: 300,
@@ -24,12 +31,10 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.circular(50),
             ),
             padding: EdgeInsets.all(50),
-            child: Text(
-              "I Love You, You know what you are the most prettiest girl in the world !!",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 17,
-              ),
+            child: Icon(
+              Icons.favorite,
+              color: const Color.fromARGB(255, 255, 255, 255),
+              size: 50,
             ),
           ),
         ),
