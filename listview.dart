@@ -14,24 +14,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: ListView(
+          scrollDirection: Axis.horizontal,
           children: [
             //1st box
             Container(
-              height: 350,
+              width: 350,
               color: Colors.deepOrange,
             ),
 
             //2nd box
             Container(
-              height: 350,
+              width: 350,
               color: Colors.deepOrange[400],
             ),
 
             //3rd box
             Container(
-              height: 241,
+              width: 350,
               color: Colors.deepOrange[200],
             ),
           ],
