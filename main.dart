@@ -3,38 +3,26 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //1st box
-            Container(
-              height: 350,
-              color: Colors.deepOrange,
-            ),
-
-            //2nd box
-            Container(
-              height: 350,
-              color: Colors.deepOrange[400],
-            ),
-
-            //3rd box
-            Container(
-              height: 241,
-              color: Colors.deepOrange[200],
-            ),
-          ],
+        body: GridView.builder(
+          itemCount: 64,
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+          itemBuilder: (context, index) => Container(
+            color: Colors.deepOrange,
+            margin: EdgeInsets.all(2),
+          ),
         ),
       ),
     );
