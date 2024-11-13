@@ -1,9 +1,11 @@
 // ignore: file_names
 // ignore_for_file: prefer_const_constructors
 
-import 'package:day_12/pages/first_page.dart';
-import 'package:day_12/pages/home_page.dart';
-import 'package:day_12/pages/settings_page.dart';
+import 'package:day_13/pages/first_page.dart';
+// ignore: unused_import
+import 'package:day_13/pages/profile_page.dart';
+import 'package:day_13/pages/settings_page.dart';
+import 'package:day_13/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {

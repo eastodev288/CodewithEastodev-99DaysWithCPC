@@ -1,49 +1,63 @@
 // ignore: unused_import
-import 'package:day_12/pages/home_page.dart';
+import 'package:day_13/pages/first_page.dart';
+import 'package:day_13/pages/profile_page.dart';
+import 'package:day_13/pages/settings_page.dart';
+import 'package:day_13/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
-class FirstPage extends StatelessWidget {
-  const FirstPage({super.key});
+class FirstPage extends StatefulWidget {
+  FirstPage({super.key});
+
+  @override
+  State<FirstPage> createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
+  int _selectedIndex = 0;
+
+  // this method updates the new selected  index
+  void _navigateBottomBar(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  final List pages = [
+    //homepage
+    HomePage(),
+    // profilepage
+    ProfilePage(),
+    // settingspage
+    SettingsPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("             1st Page!!")),
-      drawer: Drawer(
-        backgroundColor: Colors.deepPurple[200],
-        child: Column(
-          children: [
-            // common to place a drawer header  here
-            DrawerHeader(
-              // ignore: prefer_const_constructors
-              child: Icon(
-                Icons.face,
-                size: 50,
-              ),
-            ),
-            // home page list title
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Home "),
-              onTap: () {
-                // pop drawer first 
-                Navigator.pop(context),
-                // go to the home page
-                Navigator.pushNamed(context, '/homepage');
-              },
-            ),
+      appBar: AppBar(title: Text("                     1st Page!!")),
+      body: pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _navigateBottomBar,
+        items: [
+          //HOME
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
 
-            // seting page list title
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text("Settings "),
-              onTap: () {
-                //go  to the settings page
-                Navigator.pushNamed(context, '/settingspage');
-              },
-            ),
-          ],
-        ),
+          // profile
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Person',
+          ),
+
+          //settings
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
       ),
     );
   }
