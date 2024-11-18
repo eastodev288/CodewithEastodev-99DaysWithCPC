@@ -1,34 +1,21 @@
-import 'package:flutter/material.dart';
-import 'new_button.dart';
+// ignore_for_file: prefer_const_constructors
 
-// ignore: use_key_in_widget_constructors
-class HomePage extends StatefulWidget {
-  @override
-  State<HomePage> createState() => _HomePageState();
+import 'package:flutter/material.dart';
+import 'homepage.dart';
+
+void main() {
+  runApp(MyApp());
 }
 
-class _HomePageState extends State<HomePage> {
-  bool isButtonPressed = false;
-  void buttonPressed() {
-    setState(() {
-      if (isButtonPressed == false) {
-        isButtonPressed = true;
-      } else if (isButtonPressed == true) {
-        isButtonPressed = false;
-      }
-    });
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[300],
-      body: Center(
-        child: NewButton(
-          onTap: buttonPressed,
-          isButtonPressed: isButtonPressed,
-        ),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Homepage(),
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
     );
   }
 }
