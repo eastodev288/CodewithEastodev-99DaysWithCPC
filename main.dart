@@ -1,21 +1,16 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'homepage.dart';
+import 'package:day_19/homepage.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Homepage(),
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
     );
   }
 }

@@ -1,7 +1,6 @@
-import 'package:day_18_responsive_design/responsive/desktop_body.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:day_18_responsive_design/responsive/mobile_body.dart';
-import 'package:day_18_responsive_design/responsive/responsive_layout.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -11,12 +10,42 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  //variables
+  int timeLeft = 5;
+  // timer method
+  void _startCountdown() {
+    Timer.periodic(Duration(seconds: 1), (Timer) {
+      if (timeLeft > 0) {
+        setState(() {
+          timeLeft--;
+        });
+      } else {
+        Timer.cancel();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ResponsiveLayout(
-        mobileBody: MyMobileBody(),
-        desktopBody: MyDestopBody(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              timeLeft == 0 ? 'DONE' : timeLeft.toString(),
+              style: TextStyle(fontSize: 100),
+            ),
+            MaterialButton(
+              onPressed: _startCountdown,
+              child: Text(
+                'S T A R T',
+                style: TextStyle(color: Colors.white),
+              ),
+              color: Colors.deepOrange,
+            ),
+          ],
+        ),
       ),
     );
   }
