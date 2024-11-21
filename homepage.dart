@@ -1,50 +1,19 @@
-import 'dart:async';
-
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 
-class Homepage extends StatefulWidget {
+class Homepage extends StatelessWidget {
   const Homepage({super.key});
 
   @override
-  State<Homepage> createState() => _HomepageState();
-}
-
-class _HomepageState extends State<Homepage> {
-  //variables
-  int timeLeft = 5;
-  // timer method
-  void _startCountdown() {
-    Timer.periodic(Duration(seconds: 1), (Timer) {
-      if (timeLeft > 0) {
-        setState(() {
-          timeLeft--;
-        });
-      } else {
-        Timer.cancel();
-      }
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              timeLeft == 0 ? 'DONE' : timeLeft.toString(),
-              style: TextStyle(fontSize: 100),
-            ),
-            MaterialButton(
-              onPressed: _startCountdown,
-              child: Text(
-                'S T A R T',
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Colors.deepOrange,
-            ),
-          ],
+        child: AvatarGlow(
+          endRadius: 140,
+          child: Icon(Icons.menu),
+          glowColor: Colors.green,
+          duration: Duration(milliseconds: 1000),
+          repeatPauseDuration: Duration(milliseconds: 100),
         ),
       ),
     );
