@@ -1,65 +1,51 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.pink[300],
+            title: Text('Title'),
+            content: Text('Content, more info'),
+            actions: [
+              MaterialButton(
+                onPressed: () {
+                  //do something
+                },
+                child: Text('OK'),
+              ),
+              MaterialButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Cancel'),
+              ),
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('T A B B A R'),
-          backgroundColor: Colors.brown,
-          centerTitle: true,
-        ),
-        body: Column(
-          children: [
-            const TabBar(
-              tabs: [
-                Tab(
-                  icon: Icon(
-                    Icons.home,
-                    color: Colors.deepPurple,
-                  ),
-                ),
-                Tab(
-                  icon: Icon(
-                    Icons.settings,
-                    color: Colors.deepPurple,
-                  ),
-                ),
-                Tab(
-                  icon: Icon(
-                    Icons.person,
-                    color: Colors.deepPurple,
-                  ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: TabBarView(children: [
-                Container(
-                  color: Colors.cyan,
-                  child: const Center(
-                    child: Text('1st Tab'),
-                  ),
-                ),
-                Container(
-                  color: const Color.fromARGB(255, 212, 162, 0),
-                  child: const Center(
-                    child: Text('2nd Tab'),
-                  ),
-                ),
-                Container(
-                  color: Colors.indigo,
-                  child: const Center(
-                    child: Text('3rd Tab'),
-                  ),
-                ),
-              ]),
-            )
-          ],
+    return Scaffold(
+      backgroundColor: Colors.deepPurple[200],
+      body: Center(
+        child: MaterialButton(
+          color: Colors.deepPurple[350],
+          onPressed: _showDialog,
+          child: Text(
+            'Show Dialog',
+            style: TextStyle(fontSize: 40),
+          ),
         ),
       ),
     );
