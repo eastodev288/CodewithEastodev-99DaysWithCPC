@@ -1,52 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:day_25/pages/page_1.dart';
+import 'package:day_25/pages/page_2.dart';
+import 'package:day_25/pages/page_3.dart';
+import 'package:day_25/pages/page_4.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  final _controller = PageController();
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  void _showDialog() {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            backgroundColor: Colors.pink[300],
-            title: Text('Title'),
-            content: Text('Content, more info'),
-            actions: [
-              MaterialButton(
-                onPressed: () {
-                  //do something
-                },
-                child: Text('OK'),
-              ),
-              MaterialButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('Cancel'),
-              ),
-            ],
-          );
-        });
-  }
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple[200],
-      body: Center(
-        child: MaterialButton(
-          color: Colors.deepPurple[350],
-          onPressed: _showDialog,
-          child: Text(
-            'Show Dialog',
-            style: TextStyle(fontSize: 40),
+      backgroundColor: Colors.blueGrey,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          //page view
+          SizedBox(
+            height: 600,
+            child: PageView(
+              controller: _controller,
+              children: const [
+                Page1(),
+                Page2(),
+                Page3(),
+                Page4(),
+              ],
+            ),
           ),
-        ),
+          //dot indicators
+        ],
       ),
     );
   }
