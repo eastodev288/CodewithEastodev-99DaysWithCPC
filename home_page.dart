@@ -1,36 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:day_25/pages/page_1.dart';
-import 'package:day_25/pages/page_2.dart';
-import 'package:day_25/pages/page_3.dart';
-import 'package:day_25/pages/page_4.dart';
+import 'package:lottie/lottie.dart';
 
-class HomePage extends StatelessWidget {
-  final _controller = PageController();
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
-  HomePage({super.key});
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          //page view
-          SizedBox(
-            height: 600,
-            child: PageView(
-              controller: _controller,
-              children: const [
-                Page1(),
-                Page2(),
-                Page3(),
-                Page4(),
-              ],
-            ),
-          ),
-          //dot indicators
-        ],
+      body: Center(
+        child: Lottie.network(
+            'https://lottie.host/bb1349e0-4a49-4d10-9518-b3278c0352ab/dDIkUpGKEy.lottie'),
       ),
     );
   }
