@@ -1,64 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
-class HomePage extends StatelessWidget {
+class Homepage extends StatelessWidget {
+  Future<void> _handleRefresh() async {
+    //reloding takes some time..
+    return await Future.delayed(Duration(seconds: 2));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        //sliver app bar
-        slivers: [
-          SliverAppBar(
-            backgroundColor: const Color.fromARGB(255, 202, 5, 38),
-            leading: Icon(Icons.menu),
-            //title: Text('D I U'),
-            expandedHeight: 300,
-            floating: true,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                color: const Color.fromARGB(255, 45, 207, 113),
-              ),
-              title: Text('D I U'),
-            ),
-          ),
-          //sliver items
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
+      backgroundColor: const Color.fromARGB(255, 164, 165, 167),
+      body: LiquidPullToRefresh(
+        onRefresh: _handleRefresh,
+        color: const Color.fromARGB(255, 255, 77, 77),
+        height: 300,
+        backgroundColor: const Color.fromARGB(255, 67, 5, 167),
+        animSpeedFactor: 1,
+        showChildOpacityTransition: false,
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(25.0),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(10),
                 child: Container(
-                  height: 400,
-                  color: Colors.amberAccent,
+                  height: 300,
+                  color: Colors.brown,
                 ),
               ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
+            Padding(
+              padding: const EdgeInsets.all(25.0),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(10),
                 child: Container(
-                  height: 400,
-                  color: const Color.fromARGB(255, 0, 12, 66),
+                  height: 300,
+                  color: const Color.fromARGB(255, 185, 9, 53),
                 ),
               ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
+            Padding(
+              padding: const EdgeInsets.all(25.0),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(10),
                 child: Container(
-                  height: 400,
-                  color: const Color.fromARGB(255, 211, 95, 176),
+                  height: 300,
+                  color: const Color.fromARGB(255, 121, 72, 83),
                 ),
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(25.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  height: 300,
+                  color: Color.fromARGB(255, 116, 121, 72),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

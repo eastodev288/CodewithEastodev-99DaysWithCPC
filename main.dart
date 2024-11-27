@@ -1,10 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:day_26/home_page.dart';
+
+import 'homepage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: Homepage(),
     );
   }
 }
