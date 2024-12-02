@@ -1,44 +1,43 @@
 import 'package:flutter/material.dart';
 
+import '../components/bottom_nav_bar.dart';
+import 'cart_page.dart';
+import 'shop_page.dart';
+
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int numberOfTimesTapped = 0;
+  //this selected index is to control the bottom nav bar
+  int _selectedIndex = 0;
+  //this method will update our selected index
+  // when the user taps on the bottom bar
+  void navigateBottomBar(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  // pages to disply
+  final List<Widget> _pages = [
+    //shop page
+    const ShopPage(),
+
+    // cart page
+    const CartPage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'Tapped ' + numberOfTimesTapped.toString() + ' times',
-              style: TextStyle(fontSize: 30),
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  numberOfTimesTapped++;
-                });
-              },
-              child: Container(
-                padding: EdgeInsets.all(15),
-                color: Colors.green,
-                // ignore: prefer_const_constructors
-                child: Text(
-                  'Tap here',
-                  style: TextStyle(fontSize: 30),
-                ),
-              ),
-            ),
-          ],
-        ),
+      backgroundColor: Colors.grey[300],
+      bottomNavigationBar: MyBottomNavBar(
+        onTabChange: (index) => navigateBottomBar(index),
       ),
+      body: _pages[_selectedIndex],
     );
   }
 }
