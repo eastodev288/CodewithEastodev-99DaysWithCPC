@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'pages/intro_page.dart';
-
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,9 +9,63 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: IntroPage(),
+    return MaterialApp(
+      home: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              color: Colors.green,
+              height: 100,
+              width: double.infinity,
+            ),
+            Container(
+              color: Colors.brown,
+              height: 100,
+              width: double.infinity,
+            ),
+            Container(
+              color: Colors.grey,
+              height: 100,
+              width: double.infinity,
+            ),
+            Container(
+              color: Colors.red,
+              height: 100,
+              width: double.infinity,
+            ),
+            Container(
+              color: Colors.green,
+              height: 100,
+              width: double.infinity,
+            ),
+            Container(
+              color: Colors.brown,
+              height: 100,
+              width: double.infinity,
+            ),
+            Container(
+              color: Colors.grey,
+              height: 100,
+              width: double.infinity,
+            ),
+            Container(
+              color: Colors.red,
+              height: 100,
+              width: double.infinity,
+            ),
+            Container(
+              color: Colors.grey,
+              height: 100,
+              width: double.infinity,
+            ),
+            Container(
+              color: const Color.fromARGB(255, 184, 212, 158),
+              height: 100,
+              width: double.infinity,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
