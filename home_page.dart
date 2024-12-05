@@ -1,43 +1,48 @@
 import 'package:flutter/material.dart';
-
-import '../components/bottom_nav_bar.dart';
-import 'cart_page.dart';
-import 'shop_page.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  //this selected index is to control the bottom nav bar
-  int _selectedIndex = 0;
-  //this method will update our selected index
-  // when the user taps on the bottom bar
-  void navigateBottomBar(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  // pages to disply
-  final List<Widget> _pages = [
-    //shop page
-    const ShopPage(),
-
-    // cart page
-    const CartPage(),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
-      bottomNavigationBar: MyBottomNavBar(
-        onTabChange: (index) => navigateBottomBar(index),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CircularPercentIndicator(
+                animation: true,
+                animationDuration: 999,
+                radius: 150,
+                lineWidth: 40,
+                percent: 0.4,
+                progressColor: Colors.deepPurple,
+                backgroundColor: Colors.indigo.shade200,
+                circularStrokeCap: CircularStrokeCap.round,
+                center: const Text("40%", style: TextStyle(fontSize: 50)),
+              ),
+              LinearPercentIndicator(
+                animation: true,
+                animationDuration: 999,
+                lineHeight: 40,
+                percent: 1,
+                progressColor: Colors.deepPurple,
+                backgroundColor: Colors.indigo.shade200,
+                center: const Text("100%"),
+              )
+            ],
+          ),
+        ),
       ),
-      body: _pages[_selectedIndex],
     );
   }
 }
