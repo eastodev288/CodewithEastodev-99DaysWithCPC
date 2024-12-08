@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(const MyApp());
 
@@ -21,21 +22,21 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Current Time'),
         ),
         body: Center(
-          child: Container(
+          child: SizedBox(
             width: 200,
             height: 200,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  ' ${time.hour} : ${time.minute}:${time.second}',
-                  style: TextStyle(fontSize: 25),
+                  ' ${DateFormat('DateFormat.jms').format(time)}',
+                  style: const TextStyle(fontSize: 14),
                 ),
                 ElevatedButton(
                     onPressed: () {
                       setState(() {});
                     },
-                    child: Text('Current Time'))
+                    child: const Text('Current Time'))
               ],
             ),
           ),
