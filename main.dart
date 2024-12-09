@@ -1,44 +1,47 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+// ignore_for_file: prefer_const_constructors_in_immutables
 
-void main() => runApp(const MyApp());
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
+  late Animation animation;
+
+  late AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 4));
+    animation = Tween(begin: 200.0, end: 0.0).animate(animationController);
+    animationController.addListener(() {
+      print(animation.value);
+      setState(() {});
+    });
+    animationController.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var time = DateTime.now();
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Current Time'),
+          title: const Text('Tween Animation'),
         ),
         body: Center(
-          child: SizedBox(
-            width: 200,
-            height: 200,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  ' ${DateFormat('DateFormat.jms').format(time)}',
-                  style: const TextStyle(fontSize: 14),
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {});
-                    },
-                    child: const Text('Current Time'))
-              ],
-            ),
+          child: Container(
+            width: animation.value,
+            height: animation.value,
+            color: Colors.blue,
           ),
         ),
       ),
