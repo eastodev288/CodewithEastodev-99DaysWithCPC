@@ -1,49 +1,47 @@
-// ignore_for_file: prefer_const_constructors_in_immutables
-
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
-  MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
-  late Animation animation;
-
-  late AnimationController animationController;
-
-  @override
-  void initState() {
-    super.initState();
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 4));
-    animation = Tween(begin: 200.0, end: 0.0).animate(animationController);
-    animationController.addListener(() {
-      print(animation.value);
-      setState(() {});
-    });
-    animationController.forward();
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Tween Animation'),
+          title: Text('Material App Bar'),
         ),
-        body: Center(
-          child: Container(
-            width: animation.value,
-            height: animation.value,
-            color: Colors.blue,
-          ),
+        body: ListView(
+          children: [
+            ListItem(color: Colors.blueGrey),
+            ListItem(color: Colors.cyan),
+            ListItem(color: Colors.indigo),
+            ListItem(color: Colors.cyanAccent),
+            ListItem(color: Colors.red),
+            ListItem(color: Colors.purple),
+            ListItem(color: Colors.pink),
+            ListItem(color: Colors.green),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class ListItem extends StatelessWidget {
+  Color? bgColor;
+  ListItem({Key? key, color}) : super(key: key) {
+    bgColor = color;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Container(
+        height: 120.0,
+        width: double.infinity,
+        color: bgColor,
       ),
     );
   }
