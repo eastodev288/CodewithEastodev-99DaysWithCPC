@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'pages/Home_Page.dart';
+import 'package:pokemon_app/pages/details_page.dart';
+import 'pages/home_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -9,9 +9,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Material App',
-      home: HomePage(),
+      debugShowCheckedModeBanner: false,
+      //home: HomePage(),
+      home: DetailsPage(),
     );
   }
 }

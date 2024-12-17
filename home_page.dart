@@ -1,5 +1,7 @@
-import 'package:day_45/pages/second_page.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/my_title.dart';
+import '../widgets/pokemon_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -9,21 +11,62 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Material App Bar'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => SecondPage(),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: const [
+            Padding(
+              padding: EdgeInsets.only(right: 8.0),
+              child: Icon(
+                Icons.apps,
+                color: Colors.black,
               ),
-            );
-          },
-          child: const Text("GO to next Page"),
+            )
+          ],
         ),
-      ),
-    );
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const MyTitle(
+                text: "Pokedex",
+                color: Colors.black,
+              ),
+              Expanded(
+                flex: 12,
+                child: Container(
+                  child: GridView(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 4 / 3,
+                      crossAxisSpacing: 12.0,
+                      mainAxisSpacing: 12.0,
+                    ),
+                    children: const [
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                      PokemonCard(),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }
