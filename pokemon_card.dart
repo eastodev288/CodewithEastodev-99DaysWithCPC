@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon_app/pages/details_page.dart';
 
 import 'power_badge.dart';
 
 class PokemonCard extends StatelessWidget {
+  final String name;
+  final List<String> powers;
+  final String imgeUrl;
   const PokemonCard({
-    super.key,
-  });
+    Key? key,
+    required this.name,
+    required this.imgeUrl,
+    required this.powers,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => print("bum"),
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => DetailsPage()),
+        );
+      },
       child: Stack(
         children: [
           Container(
@@ -27,15 +38,15 @@ class PokemonCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Bulbasaur",
+                    "${name}",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  PowerBages(text: "Fire"),
-                  PowerBages(text: "Water"),
+                  PowerBages(text: "${powers[0]}"),
+                  PowerBages(text: "${powers[1]}"),
                 ],
               ),
             ),
@@ -43,9 +54,12 @@ class PokemonCard extends StatelessWidget {
           Positioned(
             right: 0.0,
             bottom: 0.0,
-            child: Image.network(
-              "http://www.serebii.net/pokemongo/pokemon/001.png",
-              width: 100.0,
+            child: Hero(
+              tag: "Pokecard1",
+              child: Image.network(
+                "$imgeUrl",
+                width: 100.0,
+              ),
             ),
           ),
         ],

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon_app/datasource/pokemon_datasource.dart';
 
 import '../widgets/my_title.dart';
 import '../widgets/pokemon_card.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({
-    super.key,
-  });
+  HomePage({
+    Key? key,
+  }) : super(key: key);
+  List<Map?>? pokemonData = PokemonDatasource.pokemons;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,8 @@ class HomePage extends StatelessWidget {
               Expanded(
                 flex: 12,
                 child: Container(
-                  child: GridView(
+                  child: GridView.builder(
+                    itemCount: pokemonData!.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
@@ -44,24 +47,11 @@ class HomePage extends StatelessWidget {
                       crossAxisSpacing: 12.0,
                       mainAxisSpacing: 12.0,
                     ),
-                    children: const [
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                      PokemonCard(),
-                    ],
+                    itemBuilder: (context, index) => const PokemonCard(
+                        name: "Name Here",
+                        powers: ("Power", "Another One"),
+                        imgeUrl:
+                            "http://www.serebii.net/pokemongo/pokemon/001.png"),
                   ),
                 ),
               )

@@ -24,7 +24,7 @@ class DetailsPage extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 3,
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       height: 300.0,
                       child: Padding(
@@ -33,8 +33,9 @@ class DetailsPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            MyTitle(text: "Pokemon Name", color: Colors.white),
-                            Row(
+                            const MyTitle(
+                                text: "Pokemon Name", color: Colors.white),
+                            const Row(
                               children: [
                                 PowerBages(text: "Water"),
                                 PowerBages(text: "Fire")
@@ -113,10 +114,13 @@ class DetailsPage extends StatelessWidget {
               Positioned(
                 top: 160.0,
                 child: Container(
-                  child: Image.network(
-                    "http://www.serebii.net/pokemongo/pokemon/001.png",
-                    fit: BoxFit.fill,
-                    height: 200.0,
+                  child: Hero(
+                    tag: "Pokecard1",
+                    child: Image.network(
+                      "http://www.serebii.net/pokemongo/pokemon/001.png",
+                      fit: BoxFit.fill,
+                      height: 200.0,
+                    ),
                   ),
                 ),
               )
