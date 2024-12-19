@@ -1,17 +1,23 @@
-import 'package:flutter/material.dart';
-import 'pages/home_page.dart';
+import 'dart:io';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    );
+class OppsClass1 {
+  static String? userName = "Eastodev";
+  static String? password = "2341";
+  static String? email = "eastodev3323@gmail.com";
+  static bool login(String usrname, String pass) {
+    if (usrname == userName && pass == password) {
+      return true;
+    }
+    return false;
   }
+
+  static bool logout() {
+    print("user logging out");
+    return true;
+  }
+}
+
+void main() {
+  String? userNameInput = stdin.readLineSync();
+  print(userNameInput);
 }
