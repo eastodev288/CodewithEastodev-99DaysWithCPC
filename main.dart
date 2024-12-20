@@ -1,23 +1,16 @@
 import 'dart:io';
 
-class OppsClass1 {
-  static String? userName = "Eastodev";
-  static String? password = "2341";
-  static String? email = "eastodev3323@gmail.com";
-  static bool login(String usrname, String pass) {
-    if (usrname == userName && pass == password) {
-      return true;
-    }
-    return false;
-  }
-
-  static bool logout() {
-    print("user logging out");
-    return true;
-  }
-}
+import 'user.dart';
 
 void main() {
+  print("Imput Your user name:");
   String? userNameInput = stdin.readLineSync();
-  print(userNameInput);
+  print("Input Your Password :");
+  String? userPasswordInput = stdin.readLineSync();
+  bool hasSucceedLogin = OppsClass1.login(userNameInput!, userPasswordInput!);
+  if (hasSucceedLogin) {
+    print("Login Successfull");
+  } else {
+    print("Log in failed");
+  }
 }
