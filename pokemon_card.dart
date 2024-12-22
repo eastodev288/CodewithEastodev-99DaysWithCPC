@@ -5,21 +5,24 @@ import 'power_badge.dart';
 
 class PokemonCard extends StatelessWidget {
   final String name;
-  final List<String> powers;
+  final List<String> types;
   final String imgeUrl;
+  final Map? pokemonMap;
   const PokemonCard({
-    Key? key,
+    super.key,
     required this.name,
     required this.imgeUrl,
-    required this.powers,
-  }) : super(key: key);
+    required this.types,
+    required this.pokemonMap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => DetailsPage()),
+          MaterialPageRoute(
+              builder: (context) => DetailsPage(data: pokemonMap)),
         );
       },
       child: Stack(
@@ -31,22 +34,22 @@ class PokemonCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(16.0),
               color: const Color(0xff4ad0b0),
             ),
-            child: const Padding(
-              padding: EdgeInsets.all(16.0),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "${name}",
-                    style: TextStyle(
+                    name,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  PowerBages(text: "${powers[0]}"),
-                  PowerBages(text: "${powers[1]}"),
+                  PowerBages(text: types[0]),
+                  // PowerBages(text: "${types[1]}"),
                 ],
               ),
             ),
@@ -55,9 +58,9 @@ class PokemonCard extends StatelessWidget {
             right: 0.0,
             bottom: 0.0,
             child: Hero(
-              tag: "Pokecard1",
+              tag: "Pokecard-$name",
               child: Image.network(
-                "$imgeUrl",
+                imgeUrl,
                 width: 100.0,
               ),
             ),
