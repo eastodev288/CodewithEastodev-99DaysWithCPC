@@ -2030,7 +2030,7 @@ class PokemonDatasource {
       "id": 101,
       "num": "101",
       "name": "Electrode",
-      "img": "http://www.serebii.net/pokemongo/pokemon/101.png",
+      "img": "https://www.serebii.net/pokemongo/pokemon/101.png",
       "type": ["Electric"],
       "height": "1.19 m",
       "weight": "66.6 kg",
