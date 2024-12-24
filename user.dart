@@ -1,17 +1,28 @@
-void user() {
+class User {
   String? username;
   String? password;
   String? email;
 
-  void login() {
-    print("Logging in$username");
+  User(
+    String usernameParam,
+    String passwordParam,
+    String emailParam,
+  ) {
+    username = usernameParam;
+    password = passwordParam;
+    email = emailParam;
+    print("I am a coder!!");
   }
-}
 
-void logout() {
-  print("Logging out$username ");
-}
+  void login() {
+    print("Logging in $username");
+  }
 
-void showProfic() {
-  print("Profile$username");
+  void logout() {
+    print("Logging Out $username");
+  }
+
+  void showProfile() {
+    print("Profile pf $username");
+  }
 }
