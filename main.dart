@@ -1,77 +1,17 @@
-import 'package:flutter/material.dart';
+enum LoadingState { loading, failed, succeed, erro }
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  int redScore = 50;
-  int blueScore = 50;
-  void redScoreUpadte() {
-    setState(() {
-      redScore = redScore + 1;
-      blueScore = blueScore - 1;
-    });
+void main() {
+  var currentState = LoadingState.erro;
+  if (currentState == LoadingState.loading) {
+    print("Data is Loading");
   }
-
-  void blueScoreUpdate() {
-    setState(() {
-      blueScore = blueScore + 1;
-      redScore = redScore - 1;
-    });
+  if (currentState == LoadingState.succeed) {
+    print("Successfully loaded data");
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Stack(
-          children: [
-            Column(
-              children: [
-                Expanded(
-                  flex: redScore,
-                  child: InkWell(
-                    onTap: redScoreUpadte,
-                    child: Container(
-                      color: Colors.redAccent,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: blueScore,
-                  child: InkWell(
-                    onTap: blueScoreUpdate,
-                    child: Container(
-                      color: Colors.blueAccent,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            redScore >= 100 || blueScore > 100
-                ? Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    color: Colors.purple.withOpacity(0.5),
-                    child: Center(
-                      child: Text(
-                        "${redScore >= 100 ? "Red" : "Blue"} Won!!",
-                        style: TextStyle(fontSize: 40.0, color: Colors.white),
-                      ),
-                    ),
-                  )
-                : Container(),
-          ],
-        ),
-      ),
-    );
+  if (currentState == LoadingState.failed) {
+    print("Data loading Failed");
+  }
+  if (currentState == LoadingState.erro) {
+    print("Erro");
   }
 }
