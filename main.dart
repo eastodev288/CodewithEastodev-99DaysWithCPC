@@ -1,16 +1,17 @@
-import 'dart:io';
-
-import 'user.dart';
+enum LoadingState { loading, failed, succeed, erro }
 
 void main() {
-  print("Imput Your user name:");
-  String? userNameInput = stdin.readLineSync();
-  print("Input Your Password :");
-  String? userPasswordInput = stdin.readLineSync();
-  bool hasSucceedLogin = OppsClass1.login(userNameInput!, userPasswordInput!);
-  if (hasSucceedLogin) {
-    print("Login Successfull");
-  } else {
-    print("Log in failed");
+  var currentState = LoadingState.erro;
+  if (currentState == LoadingState.loading) {
+    print("Data is Loading");
+  }
+  if (currentState == LoadingState.succeed) {
+    print("Successfully loaded data");
+  }
+  if (currentState == LoadingState.failed) {
+    print("Data loading Failed");
+  }
+  if (currentState == LoadingState.erro) {
+    print("Erro");
   }
 }

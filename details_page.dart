@@ -6,7 +6,11 @@ import 'package:pokemon_app/widgets/power_badge.dart';
 import '../widgets/feature_title_text.dart';
 
 class DetailsPage extends StatelessWidget {
-  const DetailsPage({super.key});
+  final Map? data;
+  const DetailsPage({
+    super.key,
+    required this.data,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +37,16 @@ class DetailsPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const MyTitle(
-                                text: "Pokemon Name", color: Colors.white),
-                            const Row(
+                            MyTitle(
+                                text: "${data!["name"]}", color: Colors.white),
+                            Row(
                               children: [
-                                PowerBages(text: "Water"),
-                                PowerBages(text: "Fire")
+                                PowerBages(
+                                  text: data!.containsKey("type")
+                                      ? "${data!["type"]![0]}"
+                                      : "No power",
+                                ),
+                                const PowerBages(text: "Fire")
                               ],
                             ),
                             Container(
@@ -65,18 +73,13 @@ class DetailsPage extends StatelessWidget {
                               height: double.infinity,
                               child: const Column(
                                 children: [
-                                  FeatureTitleText(
-                                    text: "Height",
-                                  ),
-                                  FeatureTitleText(
-                                    text: "Weight",
-                                  ),
-                                  FeatureTitleText(
-                                    text: "Candy",
-                                  ),
-                                  FeatureTitleText(
-                                    text: "Egg",
-                                  ),
+                                  FeatureTitleText(text: "Height"),
+                                  FeatureTitleText(text: "Weight"),
+                                  FeatureTitleText(text: "Candy"),
+                                  FeatureTitleText(text: "Candy_count"),
+                                  FeatureTitleText(text: "Egg"),
+                                  FeatureTitleText(text: "Spawn_chance"),
+                                  FeatureTitleText(text: "avg_spawns"),
                                 ],
                               ),
                             ),
@@ -86,21 +89,20 @@ class DetailsPage extends StatelessWidget {
                             child: Container(
                               padding: const EdgeInsets.only(top: 60),
                               height: double.infinity,
-                              child: const Column(
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  FeatureValueText(text: "${data!["height"]}"),
+                                  FeatureValueText(text: "${data!["weight"]}"),
+                                  FeatureValueText(text: "${data!["candy"]}"),
                                   FeatureValueText(
-                                    text: "Height",
-                                  ),
+                                      text: "${data!["candy_count"]}"),
+                                  FeatureValueText(text: "${data!["egg"]}"),
                                   FeatureValueText(
-                                    text: "Weight",
-                                  ),
+                                      text: "${data!["spawn_chance"]}"),
                                   FeatureValueText(
-                                    text: "Candy",
-                                  ),
-                                  FeatureValueText(
-                                    text: "Egg",
-                                  ),
+                                      text: "${data!["avg_spawns"]}"),
+                                  FeatureValueText(text: "${data!["egg"]}"),
                                 ],
                               ),
                             ),
@@ -115,9 +117,9 @@ class DetailsPage extends StatelessWidget {
                 top: 160.0,
                 child: Container(
                   child: Hero(
-                    tag: "Pokecard1",
+                    tag: 'Pokecard-${data!["name"]}',
                     child: Image.network(
-                      "http://www.serebii.net/pokemongo/pokemon/001.png",
+                      "${data!["img"]}",
                       fit: BoxFit.fill,
                       height: 200.0,
                     ),

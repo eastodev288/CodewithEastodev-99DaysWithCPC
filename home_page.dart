@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_app/datasource/pokemon_datasource.dart';
-
+import '../datasource/pokemon_datasource.dart';
 import '../widgets/my_title.dart';
 import '../widgets/pokemon_card.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   List<Map?>? pokemonData = PokemonDatasource.pokemons;
 
   @override
@@ -47,11 +46,15 @@ class HomePage extends StatelessWidget {
                       crossAxisSpacing: 12.0,
                       mainAxisSpacing: 12.0,
                     ),
-                    itemBuilder: (context, index) => const PokemonCard(
-                        name: "Name Here",
-                        powers: ("Power", "Another One"),
-                        imgeUrl:
-                            "http://www.serebii.net/pokemongo/pokemon/001.png"),
+                    itemBuilder: (context, index) => PokemonCard(
+                        name: "${pokemonData![index]!["name"]}",
+                        types: [
+                          pokemonData![index]!.containsKey("type")
+                              ? "${pokemonData![index]!["type"]![0]}"
+                              : "No power",
+                        ],
+                        imgeUrl: "${pokemonData![index]!["img"]}",
+                        pokemonMap: pokemonData![index]),
                   ),
                 ),
               )
