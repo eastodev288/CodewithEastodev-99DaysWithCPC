@@ -2,27 +2,27 @@ class User {
   String? username;
   String? password;
   String? email;
-
-  User(
-    String usernameParam,
-    String passwordParam,
-    String emailParam,
-  ) {
-    username = usernameParam;
-    password = passwordParam;
-    email = emailParam;
-    print("I am a coder!!");
+  bool isLogIn = false;
+  User(String this.username, String this.password, String this.email) {}
+  void logIn(String username, String password) {
+    if (this.username == username && this.password == password) {
+      isLogIn = true;
+      print("Login Successfull");
+    } else {
+      print("Login failed");
+    }
   }
 
-  void login() {
-    print("Logging in $username");
-  }
-
-  void logout() {
-    print("Logging Out $username");
+  void logOut() {
+    print("Logging out $username");
+    isLogIn = false;
   }
 
   void showProfile() {
-    print("Profile pf $username");
+    print("Profile of $username\n Email: $email");
+  }
+
+  void buyProduct() {
+    print("Buying Product");
   }
 }
