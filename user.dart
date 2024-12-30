@@ -1,28 +1,20 @@
-class User {
-  String? username;
-  String? password;
-  String? email;
-  bool isLogIn = false;
-  User(String this.username, String this.password, String this.email) {}
-  void logIn(String username, String password) {
-    if (this.username == username && this.password == password) {
-      isLogIn = true;
-      print("Login Successfull");
-    } else {
-      print("Login failed");
-    }
-  }
+import 'base_user.dart';
 
-  void logOut() {
-    print("Logging out $username");
-    isLogIn = false;
-  }
+class User extends BaseUser {
+  int? balance;
+
+  User(String? username, String? password, String? email, int? this.balance)
+      : super(username, password, email);
 
   void showProfile() {
-    print("Profile of $username\n Email: $email");
+    print("Profile of $username \n Email: $email");
   }
 
   void buyProduct() {
-    print("Buying Product");
+    print("Buying product");
+  }
+
+  void deleteAccount() {
+    print("Deleting user account");
   }
 }

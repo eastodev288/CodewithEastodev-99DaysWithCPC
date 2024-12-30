@@ -1,17 +1,24 @@
-enum LoadingState { loading, failed, succeed, erro }
+import 'dart:io';
+
+import 'admin.dart';
+import 'base_user.dart';
+import 'user.dart';
 
 void main() {
-  var currentState = LoadingState.erro;
-  if (currentState == LoadingState.loading) {
-    print("Data is Loading");
+  var user1 = User("rahim", "12345", "rahim@email.com", 200);
+
+  print("Enter username:");
+  String? username = stdin.readLineSync();
+  print("Enter Password:");
+  String? password = stdin.readLineSync();
+
+  if (username != null && password != null) {
+    user1.login(username, password);
+  } else {
+    print("You didn't enter the information");
   }
-  if (currentState == LoadingState.succeed) {
-    print("Successfully loaded data");
-  }
-  if (currentState == LoadingState.failed) {
-    print("Data loading Failed");
-  }
-  if (currentState == LoadingState.erro) {
-    print("Erro");
-  }
+
+  user1.showProfile();
+
+  var admin1 = Admin("admin", "12345", "admin@emai.com", true);
 }
