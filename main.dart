@@ -1,24 +1,96 @@
-import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/enums/box_state.dart';
 
-import 'admin.dart';
-import 'base_user.dart';
-import 'user.dart';
+import 'widgets/box_state_to_icons.dart';
 
-void main() {
-  var user1 = User("rahim", "12345", "rahim@email.com", 200);
+void main() => runApp(MyApp());
 
-  print("Enter username:");
-  String? username = stdin.readLineSync();
-  print("Enter Password:");
-  String? password = stdin.readLineSync();
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
+  //first Row
+  BoxState a = BoxState.empty;
+  BoxState b = BoxState.empty;
+  BoxState c = BoxState.empty;
+  //Second Row
+  BoxState d = BoxState.circle;
+  BoxState e = BoxState.circle;
+  BoxState f = BoxState.circle;
+  //Third Row
+  BoxState g = BoxState.cross;
+  BoxState h = BoxState.cross;
+  BoxState i = BoxState.cross;
 
-  if (username != null && password != null) {
-    user1.login(username, password);
-  } else {
-    print("You didn't enter the information");
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Material App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Tic Tac Toe'),
+        ),
+        body: Column(
+          children: [
+            const Expanded(
+              flex: 1,
+              child: Center(
+                child: Text(
+                  "Turn: Cross",
+                  style: TextStyle(fontSize: 40.2),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 5,
+              child: GridView.count(
+                mainAxisSpacing: 5.0,
+                crossAxisSpacing: 5.0,
+                crossAxisCount: 3,
+                children: [
+                  //frist Row
+                  Container(
+                    color: Colors.greenAccent,
+                    child: BoxStateToIcon(boxState: a),
+                  ),
+                  Container(
+                    color: Colors.greenAccent,
+                    child: BoxStateToIcon(boxState: b),
+                  ),
+                  Container(
+                    color: Colors.greenAccent,
+                    child: BoxStateToIcon(boxState: c),
+                  ),
+                  //Second row
+                  Container(
+                    color: Colors.greenAccent,
+                    child: BoxStateToIcon(boxState: d),
+                  ),
+                  Container(
+                    color: Colors.greenAccent,
+                    child: BoxStateToIcon(boxState: e),
+                  ),
+                  Container(
+                    color: Colors.greenAccent,
+                    child: BoxStateToIcon(boxState: f),
+                  ),
+                  //Third row
+                  Container(
+                    color: Colors.greenAccent,
+                    child: BoxStateToIcon(boxState: g),
+                  ),
+                  Container(
+                    color: Colors.greenAccent,
+                    child: BoxStateToIcon(boxState: h),
+                  ),
+                  Container(
+                    color: Colors.greenAccent,
+                    child: BoxStateToIcon(boxState: i),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
-
-  user1.showProfile();
-
-  var admin1 = Admin("admin", "12345", "admin@emai.com", true);
 }
